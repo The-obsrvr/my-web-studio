@@ -361,10 +361,13 @@ function Hero() {
         </div>
 
         <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-display italic leading-[0.95] text-balance animate-reveal [animation-delay:150ms]">
+          <p className="font-mono text-xs text-accent uppercase tracking-widest animate-reveal [animation-delay:150ms]">
+            {PROFILE.title}
+          </p>
+          <h1 className="text-5xl md:text-7xl font-display italic leading-[0.95] text-balance animate-reveal [animation-delay:250ms]">
             {PROFILE.fullName}
           </h1>
-          <p className="max-w-xl text-lg text-muted-foreground text-pretty animate-reveal [animation-delay:300ms]">
+          <p className="max-w-xl text-lg text-muted-foreground text-pretty animate-reveal [animation-delay:350ms]">
             {PROFILE.tagline}
           </p>
           <div className="pt-4 flex flex-wrap gap-4 animate-reveal [animation-delay:450ms]">
