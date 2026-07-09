@@ -702,7 +702,8 @@ function SkillBlock({ title, children }: { title: string; children: React.ReactN
 function News() {
   return (
     <Reveal>
-      <section id="news" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="06" label="News" />
+      <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
         <div className="divide-y divide-border">
           {NEWS.map((n) => (
