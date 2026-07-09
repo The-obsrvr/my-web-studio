@@ -97,8 +97,26 @@ const EXPERIENCES: Experience[] = [
   },
 ];
 
-const OTHER_EXPERIENCE =
-  "Additional freelance consulting on ML systems, teaching assistant roles in machine learning and statistics, and short industry placements in analytics and data engineering.";
+const MORE_EXPERIENCES: Experience[] = [
+  {
+    title: "Teaching Assistant — Machine Learning",
+    place: "Your University",
+    duration: "2022 — 2023",
+    tasks: [
+      "Led weekly lab sessions on supervised learning and evaluation.",
+      "Designed coursework on model calibration and error analysis.",
+    ],
+  },
+  {
+    title: "Freelance ML Consultant",
+    place: "Independent",
+    duration: "2020 — 2022",
+    tasks: [
+      "Advised early-stage teams on NLP prototypes and data pipelines.",
+      "Ran short training workshops on applied ML for non-technical staff.",
+    ],
+  },
+];
 
 type Project = {
   id: string;
@@ -474,6 +492,7 @@ function SectionHeader({
 }
 
 function Experience() {
+  const [showMore, setShowMore] = useState(false);
   return (
     <Reveal>
       <SectionDivider index="02" label="Experience" />
@@ -485,45 +504,82 @@ function Experience() {
         />
         <div className="divide-y divide-border">
           {EXPERIENCES.map((e) => (
-            <article key={e.title + e.place} className="py-8 grid md:grid-cols-[200px_1fr] gap-6">
-              <div className="space-y-1">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {e.duration}
-                </p>
-                {e.supervisor && (
-                  <p className="text-xs text-muted-foreground">Supervisor: {e.supervisor}</p>
-                )}
-                {e.link && (
-                  <a href={e.link} className="text-xs text-accent hover:underline" target="_blank" rel="noreferrer">
-                    Link ↗
-                  </a>
-                )}
-              </div>
-              <div>
-                <div className="flex items-center gap-3 mb-1">
-                  {e.logo && (
-                    <img src={e.logo} alt="" width={32} height={32} className="w-8 h-8 rounded-sm object-cover" />
-                  )}
-                  <h3 className="text-xl">{e.title}</h3>
-                </div>
-                <p className="text-muted-foreground mb-4">{e.place}</p>
-                <ul className="space-y-1.5 text-sm text-muted-foreground list-disc pl-5">
-                  {e.tasks.map((t) => <li key={t}>{t}</li>)}
-                </ul>
-              </div>
-            </article>
+            <ExperienceCard key={e.title + e.place} e={e} />
           ))}
+          {showMore &&
+            MORE_EXPERIENCES.map((e) => (
+              <ExperienceCard key={e.title + e.place} e={e} />
+            ))}
         </div>
-        <p className="mt-10 text-sm text-muted-foreground italic">
-          Beyond the above: {OTHER_EXPERIENCE}
-        </p>
+        {MORE_EXPERIENCES.length > 0 && (
+          <div className="mt-10 flex justify-center">
+            <LoadMoreButton
+              open={showMore}
+              onClick={() => setShowMore((v) => !v)}
+              labelOpen="Show less"
+              labelClosed={`Load more experience (${MORE_EXPERIENCES.length})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
 
+function ExperienceCard({ e }: { e: Experience }) {
+  return (
+    <article className="py-8 grid md:grid-cols-[200px_1fr] gap-6">
+      <div className="space-y-1">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          {e.duration}
+        </p>
+        {e.supervisor && (
+          <p className="text-xs text-muted-foreground">Supervisor: {e.supervisor}</p>
+        )}
+        {e.link && (
+          <a href={e.link} className="text-xs text-accent hover:underline" target="_blank" rel="noreferrer">
+            Link ↗
+          </a>
+        )}
+      </div>
+      <div>
+        <div className="flex items-center gap-3 mb-1">
+          {e.logo && (
+            <img src={e.logo} alt="" width={32} height={32} className="w-8 h-8 rounded-sm object-cover" />
+          )}
+          <h3 className="text-xl">{e.title}</h3>
+        </div>
+        <p className="text-muted-foreground mb-4">{e.place}</p>
+        <ul className="space-y-1.5 text-sm text-muted-foreground list-disc pl-5">
+          {e.tasks.map((t) => <li key={t}>{t}</li>)}
+        </ul>
+      </div>
+    </article>
+  );
+}
+
+function LoadMoreButton({
+  open, onClick, labelOpen, labelClosed,
+}: { open: boolean; onClick: () => void; labelOpen: string; labelClosed: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-expanded={open}
+      className="px-6 py-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300 text-xs uppercase tracking-widest font-mono"
+    >
+      {open ? `− ${labelOpen}` : `+ ${labelClosed}`}
+    </button>
+  );
+}
+
+
 function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const LIMIT = 3;
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0, LIMIT);
+  const hidden = Math.max(0, PROJECTS.length - LIMIT);
   return (
     <Reveal>
       <SectionDivider index="03" label="Projects" />
@@ -534,7 +590,7 @@ function Projects() {
           linkLabel="GitHub"
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((p) => {
+          {visible.map((p) => {
             const open = openId === p.id;
             return (
               <div key={p.id} className="group relative space-y-4">
@@ -598,12 +654,26 @@ function Projects() {
             );
           })}
         </div>
+        {hidden > 0 && (
+          <div className="mt-12 flex justify-center">
+            <LoadMoreButton
+              open={showAll}
+              onClick={() => setShowAll((v) => !v)}
+              labelOpen="Show fewer projects"
+              labelClosed={`Load more projects (${hidden})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
 
 function Research() {
+  const [showAll, setShowAll] = useState(false);
+  const LIMIT = 3;
+  const visible = showAll ? RESEARCH : RESEARCH.slice(0, LIMIT);
+  const hidden = Math.max(0, RESEARCH.length - LIMIT);
   return (
     <Reveal>
       <SectionDivider index="04" label="Research" />
@@ -618,7 +688,7 @@ function Research() {
           </a>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          {RESEARCH.map((r) => (
+          {visible.map((r) => (
             <article key={r.title} className="border border-border p-6 hover:border-accent/60 transition-colors">
               <p className="font-mono text-[10px] uppercase tracking-widest text-accent mb-2">
                 {r.venue} · {r.year}
@@ -634,10 +704,21 @@ function Research() {
             </article>
           ))}
         </div>
+        {hidden > 0 && (
+          <div className="mt-12 flex justify-center">
+            <LoadMoreButton
+              open={showAll}
+              onClick={() => setShowAll((v) => !v)}
+              labelOpen="Show fewer publications"
+              labelClosed={`Load more research (${hidden})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
+
 
 function Skills() {
   return (
@@ -708,7 +789,7 @@ function News() {
       <SectionDivider index="06" label="News" />
       <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
-        <div className="max-h-[520px] overflow-y-auto pr-2 divide-y divide-border border-y border-border">
+        <div className={`divide-y divide-border border-y border-border ${NEWS.length > 5 ? "max-h-[560px] overflow-y-auto pr-2" : ""}`}>
           {NEWS.map((n) => (
             <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-3 md:gap-8">
               <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest shrink-0">
