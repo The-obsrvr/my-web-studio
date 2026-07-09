@@ -243,18 +243,30 @@ const VOLUNTEER = [
   "STEM outreach volunteer with high-school students",
 ];
 
-const NEWS = [
+type NewsTag = "Achievement" | "Communication" | "Dissemination" | "Exploitation";
+
+const NEWS_TAG_STYLES: Record<NewsTag, string> = {
+  Achievement: "border-accent/60 text-accent bg-accent/10",
+  Communication: "border-sky-400/60 text-sky-300 bg-sky-400/10",
+  Dissemination: "border-emerald-400/60 text-emerald-300 bg-emerald-400/10",
+  Exploitation: "border-fuchsia-400/60 text-fuchsia-300 bg-fuchsia-400/10",
+};
+
+const NEWS: Array<{ date: string; title: string; tags: NewsTag[] }> = [
   {
     date: "MAY 2026",
     title: "Invited talk on stance detection at [Venue].",
+    tags: ["Communication"],
   },
   {
     date: "MAR 2026",
     title: "Paper accepted at the ACL Argument Mining workshop.",
+    tags: ["Achievement", "Dissemination"],
   },
   {
     date: "JAN 2026",
     title: "Released v0.2 of the Debate Corpus Toolkit.",
+    tags: ["Exploitation"],
   },
 ];
 
@@ -361,14 +373,11 @@ function Hero() {
         </div>
 
         <div className="space-y-6">
-          <p className="font-mono text-xs text-accent uppercase tracking-widest animate-reveal [animation-delay:150ms]">
-            {PROFILE.title}
-          </p>
           <h1 className="text-5xl md:text-7xl font-display italic leading-[0.95] text-balance animate-reveal [animation-delay:250ms]">
             {PROFILE.fullName}
           </h1>
-          <p className="max-w-xl text-lg text-muted-foreground text-pretty animate-reveal [animation-delay:350ms]">
-            {PROFILE.tagline}
+          <p className="font-mono text-xs text-accent uppercase tracking-widest animate-reveal [animation-delay:350ms]">
+            {PROFILE.title}
           </p>
           <div className="pt-4 flex flex-wrap gap-4 animate-reveal [animation-delay:450ms]">
             {[
@@ -702,13 +711,27 @@ function News() {
       <SectionDivider index="06" label="News" />
       <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
-        <div className="divide-y divide-border">
+        <div className="max-h-[520px] overflow-y-auto pr-2 divide-y divide-border border-y border-border">
           {NEWS.map((n) => (
-            <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-              <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest">
+            <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-3 md:gap-8">
+              <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest shrink-0">
                 {n.date}
               </span>
-              <p className="text-lg flex-1">{n.title}</p>
+              <div className="flex-1 space-y-2">
+                <p className="text-lg">{n.title}</p>
+                {n.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {n.tags.map((t) => (
+                      <span
+                        key={t}
+                        className={`px-2 py-0.5 border text-[10px] font-mono uppercase tracking-widest ${NEWS_TAG_STYLES[t]}`}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
