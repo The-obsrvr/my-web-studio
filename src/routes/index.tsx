@@ -97,8 +97,26 @@ const EXPERIENCES: Experience[] = [
   },
 ];
 
-const OTHER_EXPERIENCE =
-  "Additional freelance consulting on ML systems, teaching assistant roles in machine learning and statistics, and short industry placements in analytics and data engineering.";
+const MORE_EXPERIENCES: Experience[] = [
+  {
+    title: "Teaching Assistant — Machine Learning",
+    place: "Your University",
+    duration: "2022 — 2023",
+    tasks: [
+      "Led weekly lab sessions on supervised learning and evaluation.",
+      "Designed coursework on model calibration and error analysis.",
+    ],
+  },
+  {
+    title: "Freelance ML Consultant",
+    place: "Independent",
+    duration: "2020 — 2022",
+    tasks: [
+      "Advised early-stage teams on NLP prototypes and data pipelines.",
+      "Ran short training workshops on applied ML for non-technical staff.",
+    ],
+  },
+];
 
 type Project = {
   id: string;
