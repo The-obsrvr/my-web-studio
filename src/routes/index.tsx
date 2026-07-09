@@ -576,6 +576,10 @@ function LoadMoreButton({
 
 function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const LIMIT = 3;
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0, LIMIT);
+  const hidden = Math.max(0, PROJECTS.length - LIMIT);
   return (
     <Reveal>
       <SectionDivider index="03" label="Projects" />
@@ -586,7 +590,7 @@ function Projects() {
           linkLabel="GitHub"
         />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((p) => {
+          {visible.map((p) => {
             const open = openId === p.id;
             return (
               <div key={p.id} className="group relative space-y-4">
@@ -650,12 +654,26 @@ function Projects() {
             );
           })}
         </div>
+        {hidden > 0 && (
+          <div className="mt-12 flex justify-center">
+            <LoadMoreButton
+              open={showAll}
+              onClick={() => setShowAll((v) => !v)}
+              labelOpen="Show fewer projects"
+              labelClosed={`Load more projects (${hidden})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
 
 function Research() {
+  const [showAll, setShowAll] = useState(false);
+  const LIMIT = 3;
+  const visible = showAll ? RESEARCH : RESEARCH.slice(0, LIMIT);
+  const hidden = Math.max(0, RESEARCH.length - LIMIT);
   return (
     <Reveal>
       <SectionDivider index="04" label="Research" />
@@ -670,7 +688,7 @@ function Research() {
           </a>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          {RESEARCH.map((r) => (
+          {visible.map((r) => (
             <article key={r.title} className="border border-border p-6 hover:border-accent/60 transition-colors">
               <p className="font-mono text-[10px] uppercase tracking-widest text-accent mb-2">
                 {r.venue} · {r.year}
@@ -686,10 +704,21 @@ function Research() {
             </article>
           ))}
         </div>
+        {hidden > 0 && (
+          <div className="mt-12 flex justify-center">
+            <LoadMoreButton
+              open={showAll}
+              onClick={() => setShowAll((v) => !v)}
+              labelOpen="Show fewer publications"
+              labelClosed={`Load more research (${hidden})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
+
 
 function Skills() {
   return (
