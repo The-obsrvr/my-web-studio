@@ -603,7 +603,8 @@ function Projects() {
 function Research() {
   return (
     <Reveal>
-      <section id="research" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="04" label="Research" />
+      <section id="research" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="Research" />
         <div className="flex flex-wrap gap-6 mb-10 -mt-6">
           <a href={PROFILE.scholar} target="_blank" rel="noreferrer" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-accent transition-colors">
