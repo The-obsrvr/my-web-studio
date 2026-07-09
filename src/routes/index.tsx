@@ -492,6 +492,7 @@ function SectionHeader({
 }
 
 function Experience() {
+  const [showMore, setShowMore] = useState(false);
   return (
     <Reveal>
       <SectionDivider index="02" label="Experience" />
@@ -503,42 +504,75 @@ function Experience() {
         />
         <div className="divide-y divide-border">
           {EXPERIENCES.map((e) => (
-            <article key={e.title + e.place} className="py-8 grid md:grid-cols-[200px_1fr] gap-6">
-              <div className="space-y-1">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {e.duration}
-                </p>
-                {e.supervisor && (
-                  <p className="text-xs text-muted-foreground">Supervisor: {e.supervisor}</p>
-                )}
-                {e.link && (
-                  <a href={e.link} className="text-xs text-accent hover:underline" target="_blank" rel="noreferrer">
-                    Link ↗
-                  </a>
-                )}
-              </div>
-              <div>
-                <div className="flex items-center gap-3 mb-1">
-                  {e.logo && (
-                    <img src={e.logo} alt="" width={32} height={32} className="w-8 h-8 rounded-sm object-cover" />
-                  )}
-                  <h3 className="text-xl">{e.title}</h3>
-                </div>
-                <p className="text-muted-foreground mb-4">{e.place}</p>
-                <ul className="space-y-1.5 text-sm text-muted-foreground list-disc pl-5">
-                  {e.tasks.map((t) => <li key={t}>{t}</li>)}
-                </ul>
-              </div>
-            </article>
+            <ExperienceCard key={e.title + e.place} e={e} />
           ))}
+          {showMore &&
+            MORE_EXPERIENCES.map((e) => (
+              <ExperienceCard key={e.title + e.place} e={e} />
+            ))}
         </div>
-        <p className="mt-10 text-sm text-muted-foreground italic">
-          Beyond the above: {OTHER_EXPERIENCE}
-        </p>
+        {MORE_EXPERIENCES.length > 0 && (
+          <div className="mt-10 flex justify-center">
+            <LoadMoreButton
+              open={showMore}
+              onClick={() => setShowMore((v) => !v)}
+              labelOpen="Show less"
+              labelClosed={`Load more experience (${MORE_EXPERIENCES.length})`}
+            />
+          </div>
+        )}
       </section>
     </Reveal>
   );
 }
+
+function ExperienceCard({ e }: { e: Experience }) {
+  return (
+    <article className="py-8 grid md:grid-cols-[200px_1fr] gap-6">
+      <div className="space-y-1">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+          {e.duration}
+        </p>
+        {e.supervisor && (
+          <p className="text-xs text-muted-foreground">Supervisor: {e.supervisor}</p>
+        )}
+        {e.link && (
+          <a href={e.link} className="text-xs text-accent hover:underline" target="_blank" rel="noreferrer">
+            Link ↗
+          </a>
+        )}
+      </div>
+      <div>
+        <div className="flex items-center gap-3 mb-1">
+          {e.logo && (
+            <img src={e.logo} alt="" width={32} height={32} className="w-8 h-8 rounded-sm object-cover" />
+          )}
+          <h3 className="text-xl">{e.title}</h3>
+        </div>
+        <p className="text-muted-foreground mb-4">{e.place}</p>
+        <ul className="space-y-1.5 text-sm text-muted-foreground list-disc pl-5">
+          {e.tasks.map((t) => <li key={t}>{t}</li>)}
+        </ul>
+      </div>
+    </article>
+  );
+}
+
+function LoadMoreButton({
+  open, onClick, labelOpen, labelClosed,
+}: { open: boolean; onClick: () => void; labelOpen: string; labelClosed: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-expanded={open}
+      className="px-6 py-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300 text-xs uppercase tracking-widest font-mono"
+    >
+      {open ? `− ${labelOpen}` : `+ ${labelClosed}`}
+    </button>
+  );
+}
+
 
 function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
