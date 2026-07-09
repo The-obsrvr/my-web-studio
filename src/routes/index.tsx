@@ -371,28 +371,28 @@ function Hero() {
             {PROFILE.tagline}
           </p>
           <div className="pt-4 flex flex-wrap gap-4 animate-reveal [animation-delay:450ms]">
-            <a
-              href="#projects"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
-                history.replaceState(null, "", "#projects");
-              }}
-              className="inline-block px-6 py-3 border border-foreground hover:bg-foreground hover:text-background transition-all duration-300 text-xs uppercase tracking-widest"
-            >
-              View Projects
-            </a>
-            <a
-              href="#research"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("research")?.scrollIntoView({ behavior: "smooth" });
-                history.replaceState(null, "", "#research");
-              }}
-              className="inline-block px-6 py-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300 text-xs uppercase tracking-widest"
-            >
-              Research
-            </a>
+            {[
+              { id: "experience", label: "Experience" },
+              { id: "projects", label: "Projects" },
+              { id: "research", label: "Research" },
+            ].map((item, i) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+                  history.replaceState(null, "", `#${item.id}`);
+                }}
+                className={
+                  i === 0
+                    ? "inline-block px-6 py-3 border border-foreground hover:bg-foreground hover:text-background transition-all duration-300 text-xs uppercase tracking-widest"
+                    : "inline-block px-6 py-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300 text-xs uppercase tracking-widest"
+                }
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
