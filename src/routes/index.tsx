@@ -711,13 +711,27 @@ function News() {
       <SectionDivider index="06" label="News" />
       <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
-        <div className="divide-y divide-border">
+        <div className="max-h-[520px] overflow-y-auto pr-2 divide-y divide-border border-y border-border">
           {NEWS.map((n) => (
-            <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
-              <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest">
+            <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-3 md:gap-8">
+              <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest shrink-0">
                 {n.date}
               </span>
-              <p className="text-lg flex-1">{n.title}</p>
+              <div className="flex-1 space-y-2">
+                <p className="text-lg">{n.title}</p>
+                {n.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {n.tags.map((t) => (
+                      <span
+                        key={t}
+                        className={`px-2 py-0.5 border text-[10px] font-mono uppercase tracking-widest ${NEWS_TAG_STYLES[t]}`}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>
