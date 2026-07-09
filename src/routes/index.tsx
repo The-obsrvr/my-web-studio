@@ -724,9 +724,14 @@ function Contact() {
   return (
     <footer
       id="contact"
-      className="py-32 px-6 border-t border-border bg-foreground text-background"
+      className="py-32 px-6 border-t-2 border-accent/60 bg-foreground text-background"
     >
       <div className="max-w-6xl mx-auto space-y-10">
+        <div className="flex items-center gap-6 pb-6 border-b border-background/20">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">07</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-background/60">Contact</span>
+          <span className="flex-1 h-px bg-background/20" />
+        </div>
         <div className="space-y-8">
           <h2 className="text-5xl font-display italic">Get in touch.</h2>
           <p className="text-background/70 max-w-md">
