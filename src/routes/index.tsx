@@ -523,7 +523,8 @@ function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
   return (
     <Reveal>
-      <section id="projects" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="03" label="Projects" />
+      <section id="projects" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader
           title="Projects"
           link={PROFILE.github}
