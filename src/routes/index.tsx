@@ -789,7 +789,7 @@ function News() {
       <SectionDivider index="06" label="News" />
       <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
-        <div className="max-h-[520px] overflow-y-auto pr-2 divide-y divide-border border-y border-border">
+        <div className={`divide-y divide-border border-y border-border ${NEWS.length > 5 ? "max-h-[560px] overflow-y-auto pr-2" : ""}`}>
           {NEWS.map((n) => (
             <div key={n.title} className="py-6 flex flex-col md:flex-row md:items-baseline gap-3 md:gap-8">
               <span className="font-mono text-[10px] text-muted-foreground md:w-24 uppercase tracking-widest shrink-0">
