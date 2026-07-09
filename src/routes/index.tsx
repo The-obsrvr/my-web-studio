@@ -408,9 +408,6 @@ function About() {
         <div className="grid md:grid-cols-[1fr_1.4fr] gap-16 items-start">
           <div>
             <h2 className="text-4xl font-display italic mb-6">About</h2>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-accent">
-              Short Bio
-            </p>
           </div>
           <div className="space-y-10">
             <p className="text-lg leading-relaxed text-pretty">{SHORT_BIO}</p>
