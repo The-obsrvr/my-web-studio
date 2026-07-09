@@ -426,6 +426,22 @@ function About() {
   );
 }
 
+function SectionDivider({ index, label }: { index: string; label: string }) {
+  return (
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="flex items-center gap-6 pt-10 border-t border-foreground/25">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          {index}
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          {label}
+        </span>
+        <span className="flex-1 h-px bg-border" />
+      </div>
+    </div>
+  );
+}
+
 function SectionHeader({
   eyebrow, title, link, linkLabel,
 }: { eyebrow?: string; title: string; link?: string; linkLabel?: string }) {
