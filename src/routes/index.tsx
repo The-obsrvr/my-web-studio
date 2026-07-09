@@ -351,12 +351,12 @@ function Hero() {
           aria-hidden="true"
           width={1920}
           height={1280}
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-70"
         />
-        {/* Fade behind top navbar */}
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background via-background/80 to-transparent" />
-        {/* Soft vignette for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background" />
+        {/* Subtle fade under the top navbar so links stay legible */}
+        <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background/70 to-transparent" />
+        {/* Fade the image out around the middle of the portrait, keep the lower half clean */}
+        <div className="absolute inset-x-0 top-1/2 bottom-0 bg-gradient-to-b from-background/40 via-background to-background" />
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto px-6 py-32 grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
