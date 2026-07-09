@@ -1,21 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
-import portraitImg from "../assets/portrait.jpg";
-import heroBg from "../assets/hero-bg.jpg";
-import project01 from "../assets/project-01.jpg";
-import project02 from "../assets/project-02.jpg";
-import project03 from "../assets/project-03.jpg";
+import portraitImg from "./assets/portrait.jpg";
+import heroBg from "./assets/hero-bg.jpg";
+import project01 from "./assets/project-01.jpg";
+import project02 from "./assets/project-02.jpg";
+import project03 from "./assets/project-03.jpg";
 
-export const Route = createFileRoute("/")({
-  component: Index,
-  head: () => ({
-    meta: [
-      { property: "og:image", content: "/og-image.jpg" },
-      { name: "twitter:image", content: "/og-image.jpg" },
-    ],
-  }),
-});
+export default function App() {
+  return <Index />;
+}
 
 type Section = { id: string; label: string };
 
