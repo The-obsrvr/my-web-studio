@@ -243,18 +243,30 @@ const VOLUNTEER = [
   "STEM outreach volunteer with high-school students",
 ];
 
-const NEWS = [
+type NewsTag = "Achievement" | "Communication" | "Dissemination" | "Exploitation";
+
+const NEWS_TAG_STYLES: Record<NewsTag, string> = {
+  Achievement: "border-accent/60 text-accent bg-accent/10",
+  Communication: "border-sky-400/60 text-sky-300 bg-sky-400/10",
+  Dissemination: "border-emerald-400/60 text-emerald-300 bg-emerald-400/10",
+  Exploitation: "border-fuchsia-400/60 text-fuchsia-300 bg-fuchsia-400/10",
+};
+
+const NEWS: Array<{ date: string; title: string; tags: NewsTag[] }> = [
   {
     date: "MAY 2026",
     title: "Invited talk on stance detection at [Venue].",
+    tags: ["Communication"],
   },
   {
     date: "MAR 2026",
     title: "Paper accepted at the ACL Argument Mining workshop.",
+    tags: ["Achievement", "Dissemination"],
   },
   {
     date: "JAN 2026",
     title: "Released v0.2 of the Debate Corpus Toolkit.",
+    tags: ["Exploitation"],
   },
 ];
 
