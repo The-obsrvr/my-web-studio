@@ -473,7 +473,8 @@ function SectionHeader({
 function Experience() {
   return (
     <Reveal>
-      <section id="experience" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="02" label="Experience" />
+      <section id="experience" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader
           title="Experience"
           link={PROFILE.linkedin}
