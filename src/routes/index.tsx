@@ -639,7 +639,8 @@ function Research() {
 function Skills() {
   return (
     <Reveal>
-      <section id="skills" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="05" label="Skills & Qualifications" />
+      <section id="skills" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="Skills & Qualifications" />
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
           <SkillBlock title="Education">
