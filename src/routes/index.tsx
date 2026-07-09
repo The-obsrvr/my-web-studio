@@ -317,9 +317,6 @@ function Header({ activeId, scrolled }: { activeId: string; scrolled: boolean })
       aria-label="Primary"
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
-        <span className="font-mono text-xs tracking-widest uppercase shrink-0">
-          {PROFILE.fullName.split(" ").map((w) => w[0]).join("")}.
-        </span>
         <div className="flex gap-3 sm:gap-6 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium overflow-x-auto no-scrollbar">
           {SECTIONS.map((s) => (
             <a
