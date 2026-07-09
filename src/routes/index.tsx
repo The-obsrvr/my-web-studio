@@ -198,11 +198,33 @@ const RESEARCH: Research[] = [
   },
 ];
 
-const EDUCATION = [
-  { degree: "PhD, Computer Science (in progress)", place: "Your University", year: "2023 —" },
-  { degree: "MSc, Data Science / AI", place: "Your University", year: "2021" },
-  { degree: "BSc, Computer Science", place: "Your University", year: "2019" },
+const EDUCATION: Array<{
+  degree: string;
+  place: string;
+  year: string;
+  courses?: string[];
+  notes?: string;
+}> = [
+  {
+    degree: "PhD, Computer Science (in progress)",
+    place: "Your University",
+    year: "2023 —",
+    notes: "Thesis: Identifying stances of argumentative opinions in political discourse.",
+  },
+  {
+    degree: "MSc, Data Science / AI",
+    place: "Your University",
+    year: "2021",
+    courses: ["Machine Learning", "NLP", "Statistical Inference", "Deep Learning"],
+  },
+  {
+    degree: "BSc, Computer Science",
+    place: "Your University",
+    year: "2019",
+    courses: ["Algorithms", "Databases", "Linear Algebra", "Software Engineering"],
+  },
 ];
+
 
 const TECH_SKILLS = [
   "Python", "PyTorch", "Hugging Face", "scikit-learn", "R",
@@ -601,11 +623,20 @@ function Skills() {
         <SectionHeader title="Skills & Qualifications" />
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
           <SkillBlock title="Education">
-            <ul className="space-y-3">
+            <ul className="space-y-5">
               {EDUCATION.map((e) => (
-                <li key={e.degree}>
-                  <p className="text-base">{e.degree}</p>
+                <li key={e.degree} className="space-y-1">
+                  <p className="text-base font-medium">{e.degree}</p>
                   <p className="text-xs text-muted-foreground">{e.place} · {e.year}</p>
+                  {e.notes && (
+                    <p className="text-sm text-muted-foreground italic pt-1">{e.notes}</p>
+                  )}
+                  {e.courses && e.courses.length > 0 && (
+                    <p className="text-xs text-muted-foreground pt-1">
+                      <span className="font-mono uppercase tracking-widest text-[10px] text-accent mr-2">Key courses</span>
+                      {e.courses.join(" · ")}
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -638,11 +669,14 @@ function Skills() {
 function SkillBlock({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="font-mono text-[10px] uppercase tracking-widest text-accent mb-4">{title}</h3>
+      <h3 className="font-display text-2xl italic mb-5 pb-2 border-b border-border">
+        {title}
+      </h3>
       {children}
     </div>
   );
 }
+
 
 function News() {
   return (
