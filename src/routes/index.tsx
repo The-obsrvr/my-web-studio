@@ -403,7 +403,8 @@ function Hero() {
 function About() {
   return (
     <Reveal>
-      <section id="about" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="01" label="About" />
+      <section id="about" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[1fr_1.4fr] gap-16 items-start">
           <div>
             <h2 className="text-4xl font-display italic mb-6">About</h2>
@@ -423,6 +424,22 @@ function About() {
         </div>
       </section>
     </Reveal>
+  );
+}
+
+function SectionDivider({ index, label }: { index: string; label: string }) {
+  return (
+    <div className="max-w-6xl mx-auto px-6">
+      <div className="flex items-center gap-6 pt-10 border-t border-foreground/25">
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">
+          {index}
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          {label}
+        </span>
+        <span className="flex-1 h-px bg-border" />
+      </div>
+    </div>
   );
 }
 
@@ -456,7 +473,8 @@ function SectionHeader({
 function Experience() {
   return (
     <Reveal>
-      <section id="experience" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="02" label="Experience" />
+      <section id="experience" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader
           title="Experience"
           link={PROFILE.linkedin}
@@ -505,7 +523,8 @@ function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
   return (
     <Reveal>
-      <section id="projects" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="03" label="Projects" />
+      <section id="projects" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader
           title="Projects"
           link={PROFILE.github}
@@ -584,7 +603,8 @@ function Projects() {
 function Research() {
   return (
     <Reveal>
-      <section id="research" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="04" label="Research" />
+      <section id="research" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="Research" />
         <div className="flex flex-wrap gap-6 mb-10 -mt-6">
           <a href={PROFILE.scholar} target="_blank" rel="noreferrer" className="text-xs uppercase tracking-widest text-muted-foreground hover:text-accent transition-colors">
@@ -619,7 +639,8 @@ function Research() {
 function Skills() {
   return (
     <Reveal>
-      <section id="skills" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="05" label="Skills & Qualifications" />
+      <section id="skills" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="Skills & Qualifications" />
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
           <SkillBlock title="Education">
@@ -681,7 +702,8 @@ function SkillBlock({ title, children }: { title: string; children: React.ReactN
 function News() {
   return (
     <Reveal>
-      <section id="news" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="06" label="News" />
+      <section id="news" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <SectionHeader title="News" eyebrow="Talks · Dissemination · Achievements" />
         <div className="divide-y divide-border">
           {NEWS.map((n) => (
@@ -702,9 +724,14 @@ function Contact() {
   return (
     <footer
       id="contact"
-      className="py-32 px-6 border-t border-border bg-foreground text-background"
+      className="py-32 px-6 border-t-2 border-accent/60 bg-foreground text-background"
     >
       <div className="max-w-6xl mx-auto space-y-10">
+        <div className="flex items-center gap-6 pb-6 border-b border-background/20">
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">07</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-background/60">Contact</span>
+          <span className="flex-1 h-px bg-background/20" />
+        </div>
         <div className="space-y-8">
           <h2 className="text-5xl font-display italic">Get in touch.</h2>
           <p className="text-background/70 max-w-md">
