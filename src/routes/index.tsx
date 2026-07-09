@@ -403,7 +403,8 @@ function Hero() {
 function About() {
   return (
     <Reveal>
-      <section id="about" className="py-32 px-6 max-w-6xl mx-auto border-t border-border">
+      <SectionDivider index="01" label="About" />
+      <section id="about" className="pt-16 pb-32 px-6 max-w-6xl mx-auto">
         <div className="grid md:grid-cols-[1fr_1.4fr] gap-16 items-start">
           <div>
             <h2 className="text-4xl font-display italic mb-6">About</h2>
