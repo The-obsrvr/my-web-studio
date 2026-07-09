@@ -341,7 +341,7 @@ function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Customizable background image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={heroBg}
           alt=""
