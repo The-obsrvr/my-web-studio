@@ -670,7 +670,7 @@ function Contact() {
       id="contact"
       className="py-32 px-6 border-t border-border bg-foreground text-background"
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+      <div className="max-w-6xl mx-auto space-y-10">
         <div className="space-y-8">
           <h2 className="text-5xl font-display italic">Get in touch.</h2>
           <p className="text-background/70 max-w-md">
@@ -686,18 +686,19 @@ function Contact() {
             </a>
           </div>
         </div>
-        <div className="flex flex-col gap-4 justify-end items-start md:items-end">
+        <div className="flex flex-col gap-6 items-start">
           <div className="flex flex-wrap gap-6 font-mono text-xs uppercase tracking-widest">
             <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
             <a href={PROFILE.github} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">GitHub</a>
             <a href={PROFILE.scholar} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">Scholar</a>
             <a href={PROFILE.orcid} target="_blank" rel="noreferrer" className="hover:text-accent transition-colors">ORCID</a>
           </div>
-          <p className="font-mono text-[10px] text-background/40 mt-12">
+          <p className="font-mono text-[10px] text-background/40 mt-8">
             © {new Date().getFullYear()} {PROFILE.fullName.toUpperCase()}. ALL RIGHTS RESERVED.
           </p>
         </div>
       </div>
+
     </footer>
   );
 }
