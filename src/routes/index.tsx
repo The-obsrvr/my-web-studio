@@ -198,11 +198,33 @@ const RESEARCH: Research[] = [
   },
 ];
 
-const EDUCATION = [
-  { degree: "PhD, Computer Science (in progress)", place: "Your University", year: "2023 —" },
-  { degree: "MSc, Data Science / AI", place: "Your University", year: "2021" },
-  { degree: "BSc, Computer Science", place: "Your University", year: "2019" },
+const EDUCATION: Array<{
+  degree: string;
+  place: string;
+  year: string;
+  courses?: string[];
+  notes?: string;
+}> = [
+  {
+    degree: "PhD, Computer Science (in progress)",
+    place: "Your University",
+    year: "2023 —",
+    notes: "Thesis: Identifying stances of argumentative opinions in political discourse.",
+  },
+  {
+    degree: "MSc, Data Science / AI",
+    place: "Your University",
+    year: "2021",
+    courses: ["Machine Learning", "NLP", "Statistical Inference", "Deep Learning"],
+  },
+  {
+    degree: "BSc, Computer Science",
+    place: "Your University",
+    year: "2019",
+    courses: ["Algorithms", "Databases", "Linear Algebra", "Software Engineering"],
+  },
 ];
+
 
 const TECH_SKILLS = [
   "Python", "PyTorch", "Hugging Face", "scikit-learn", "R",
