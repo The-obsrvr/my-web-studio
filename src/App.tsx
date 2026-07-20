@@ -281,6 +281,13 @@ const NEWS: Array<{ date: string; title: string; tags: NewsTag[] }> = [
   },
 ];
 
+/* Resume downloads — drop the matching PDFs in /public/resume/ */
+const RESUME_OPTIONS: { label: string; file: string; description: string }[] = [
+  { label: "1-page CV", file: "/resume/resume-1page.pdf", description: "Concise summary" },
+  { label: "2-page CV", file: "/resume/resume-2page.pdf", description: "Professional detail" },
+  { label: "Academic CV", file: "/resume/resume-academic.pdf", description: "Full academic record" },
+];
+
 /* ----------------------------- COMPONENT ----------------------------- */
 
 function Index() {
@@ -343,6 +350,7 @@ function Header({ activeId, scrolled }: { activeId: string; scrolled: boolean })
             </a>
           ))}
         </div>
+        <ResumeMenu />
       </div>
     </nav>
   );
