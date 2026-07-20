@@ -356,6 +356,62 @@ function Header({ activeId, scrolled }: { activeId: string; scrolled: boolean })
   );
 }
 
+function ResumeMenu() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative shrink-0">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-1.5 border border-border/70 hover:border-accent hover:text-accent transition-colors px-3 py-1.5 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-medium"
+        aria-haspopup="menu"
+        aria-expanded={open}
+      >
+        Resume
+        <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`}>
+          <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          role="menu"
+          className="absolute right-0 mt-2 w-64 border border-border bg-background/95 backdrop-blur-md shadow-lg"
+        >
+          {RESUME_OPTIONS.map((o) => (
+            <a
+              key={o.file}
+              href={o.file}
+              download
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-3 border-b border-border/50 last:border-b-0 hover:bg-accent/10 hover:text-accent transition-colors"
+            >
+              <div className="text-[11px] uppercase tracking-[0.18em] font-medium">{o.label}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{o.description}</div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
