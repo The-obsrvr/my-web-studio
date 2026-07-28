@@ -26,15 +26,15 @@ const SECTIONS: Section[] = [
 /* -------------------- CONTENT (customize freely) -------------------- */
 
 const PROFILE = {
-  fullName: "Your Full Name",
-  title: "PhD Candidate in Computer Science · Data Scientist",
+  fullName: "Siddharth Bhargava",
+  title: "Pursuing PhD in Computational Science · Data Scientist",
   tagline:
-    "Identifying stances of argumentative opinions in political discourse.",
-  email: "you@example.com",
-  linkedin: "https://www.linkedin.com/in/your-handle",
-  github: "https://github.com/your-handle",
-  scholar: "https://scholar.google.com/citations?user=your-id",
-  orcid: "https://orcid.org/0000-0000-0000-0000",
+    "Reasoning in .",
+  email: "sddhrth.bhargava@gmail.com",
+  linkedin: "https://www.linkedin.com/in/sddhrthbhargava/",
+  github: "https://github.com/The-obsrvr",
+  scholar: "https://scholar.google.com/citations?user=y1AJNwUAAAAJ&hl=en&authuser=1&oi=ao",
+  orcid: "https://orcid.org/0000-0002-2682-8557",
 };
 
 const SHORT_BIO =
