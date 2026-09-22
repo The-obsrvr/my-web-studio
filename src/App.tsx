@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import portraitImg from "./assets/portrait.jpg";
+import portraitImg from "./assets/selfie.jpg";
 import heroBg from "./assets/hero-bg.jpg";
 import project01 from "./assets/project-01.jpg";
 import project02 from "./assets/project-02.jpg";
@@ -439,7 +439,7 @@ function Hero() {
               alt={`Portrait of ${PROFILE.fullName}`}
               width={512}
               height={512}
-              className="w-full h-full object-cover grayscale"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
