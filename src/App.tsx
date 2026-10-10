@@ -27,9 +27,9 @@ const SECTIONS: Section[] = [
 
 const PROFILE = {
   fullName: "Siddharth Bhargava",
-  title: "Pursuing PhD in Computational Science · Data Scientist",
+  title: "Pursuing PhD in Computational Science · NLP Engineer",
   tagline:
-    "Reasoning in .",
+    "Reasoning in Multi-Party Multi-threaded Long Conversations.",
   email: "sddhrth.bhargava@gmail.com",
   linkedin: "https://www.linkedin.com/in/sddhrthbhargava/",
   github: "https://github.com/The-obsrvr",
@@ -58,10 +58,10 @@ type Experience = {
 const EXPERIENCES: Experience[] = [
   {
     title: "PhD Researcher",
-    place: "Your University — Department of Computer Science",
-    duration: "2023 — Present",
-    supervisor: "Prof. Supervisor Name",
-    link: "#",
+    place: " — Department of Computer Science",
+    duration: "2023 — 2026",
+    supervisor: "Dr. Sara Tonelli",
+    link: "https://dh.fbk.eu/",
     tasks: [
       "Designing stance-detection models for political argumentation.",
       "Curating and annotating multilingual debate corpora.",
